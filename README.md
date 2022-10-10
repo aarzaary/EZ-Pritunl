@@ -1,4 +1,7 @@
-# EZ-Pritunl
-Connect Pritunl VPN with autogenerate OTP
+<h1 align="center">EZ-Pritunl for Windows</h1>
 
->pip3 install oathtool keyboard halo
+## Preparation
+```pip3 install oathtool keyboard halo pyinstaller```
+
+## Build Exe Application
+```pyinstaller -F EZ-Pritunl.py```
