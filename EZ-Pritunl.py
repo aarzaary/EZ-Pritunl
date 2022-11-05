@@ -1,13 +1,16 @@
-from genericpath import exists
+import json
+import webbrowser
+from os import chdir, getcwd
+from os import path as os_path
+from os import system
+from subprocess import check_output
 from sys import exit
 from time import sleep
-import oathtool
-from os import system,chdir,getcwd,path as os_path
-from subprocess import check_output
-import webbrowser
+
 import keyboard
+import oathtool
+from genericpath import exists
 from halo import Halo
-import json
 
 art = """
 	███████╗███████╗     ██████╗ ██████╗ ██╗████████╗██╗   ██╗███╗   ██╗██╗     
@@ -34,7 +37,7 @@ anim = {
 	]
 }
 
-system(f'title EZ-Pritunl by Lord Ary')
+system(f'title EZ-Pritunl by Ary')
 system(f'mode con:cols=125 lines=30')
 print()
 print (art)
