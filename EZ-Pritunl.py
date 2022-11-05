@@ -7,10 +7,10 @@ from subprocess import check_output
 from sys import exit
 from time import sleep
 
+import animation
 import keyboard
 import oathtool
 from genericpath import exists
-from halo import Halo
 
 art = """
 	███████╗███████╗     ██████╗ ██████╗ ██╗████████╗██╗   ██╗███╗   ██╗██╗     
@@ -20,22 +20,6 @@ art = """
 	███████╗███████╗     ██║     ██║  ██║██║   ██║   ╚██████╔╝██║ ╚████║███████╗
 	╚══════╝╚══════╝     ╚═╝     ╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═══╝╚══════╝
 """
-
-anim = {
-	"interval": 80,
-	"frames": [
-		"⠋",
-		"⠙",
-		"⠹",
-		"⠸",
-		"⠼",
-		"⠴",
-		"⠦",
-		"⠧",
-		"⠇",
-		"⠏"
-	]
-}
 
 system(f'title EZ-Pritunl by Ary')
 system(f'mode con:cols=125 lines=30')
@@ -171,14 +155,15 @@ if pil == 1:
 	cek = check_output("pritunl-client.exe list", shell=True).decode("utf-8")
 	cek = cek.split("\n")
 	cek_vpn = cek[vpn_list[id][2]]
-	spinner = Halo(text='Connecting VPN', spinner=anim)
-	spinner.start()
+	wait = animation.Wait(text="[!] Connecting", speed=0.04)
+	wait.start()
 	while "Connecting" in cek_vpn:
 		cek = check_output("pritunl-client.exe list", shell=True).decode("utf-8")
 		cek = cek.split("\n")
 		cek_vpn = cek[vpn_list[id][2]]
 		sleep(1)
-	spinner.succeed("VPN Connected")
+	wait.stop()
+	print("[!] VPN Connected")
 	sleep(3)
 	exit()
 elif pil == 2:
@@ -204,14 +189,15 @@ elif pil == 2:
 	cek = check_output("pritunl-client.exe list", shell=True).decode("utf-8")
 	cek = cek.split("\n")
 	cek_vpn = cek[vpn_list[id][2]].split(' ')[11]
-	spinner = Halo(text='Disconnecting VPN', spinner=anim)
-	spinner.start()
+	wait = animation.Wait(text="[!] Disconnecting", speed=0.04)
+	wait.start()
 	while cek_vpn != "Disconnected":
 		cek = check_output("pritunl-client.exe list", shell=True).decode("utf-8")
 		cek = cek.split("\n")
 		cek_vpn = cek[vpn_list[id][2]].split(' ')[11]
 		sleep(1)
-	spinner.succeed("VPN Disconnected")
+	wait.stop()
+	print("[!] VPN Disconnected")
 	sleep(3)
 	exit()
 elif pil == 3:
