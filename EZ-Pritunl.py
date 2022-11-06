@@ -69,9 +69,9 @@ if cek == 5:
 	print("Please enter Profile URI Link")
 	print(f"Example: pritunl://{url}/ku/xxxxxxxx")
 	print()
-	url = input("Input Profile URI: ")
+	addurl = input("Input Profile URI: ")
 
-	while f"pritunl://{url}" not in url:
+	while f"pritunl://{url}" not in addurl:
 			print()
 			print("[!] Invalid Profile URI [!]")
 			sleep(3)
@@ -82,7 +82,7 @@ if cek == 5:
 			print()
 			url = input("Input Profile URI: ")
 	
-	system(f"pritunl-client.exe add {url}")
+	system(f"pritunl-client.exe add {addurl}")
 	system("cls")
 
 out = check_output("pritunl-client.exe list", shell=True).decode("utf-8")
@@ -155,7 +155,7 @@ if pil == 1:
 	cek = check_output("pritunl-client.exe list", shell=True).decode("utf-8")
 	cek = cek.split("\n")
 	cek_vpn = cek[vpn_list[id][2]]
-	wait = animation.Wait(text="[!] Connecting", speed=0.04)
+	wait = animation.Wait(text="[!] Connecting", speed=0.1)
 	wait.start()
 	while "Connecting" in cek_vpn:
 		cek = check_output("pritunl-client.exe list", shell=True).decode("utf-8")
